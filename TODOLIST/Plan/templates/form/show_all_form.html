@@ -1,0 +1,30 @@
+{% extends 'base.html'%}
+{% block content %}
+<h2>All your's plans here</h2>
+<table>
+	<thead>
+		<tr>
+			<th>Title</th>
+			<th>{{ object.title }}</th>
+		</tr>
+		<tr>
+			<th>Description</th>
+			<th>{{ object.description }}</th>
+		</tr>
+		<tr>
+			<th>Starttime</th>
+			<th>{{ object.start_time }}</th>
+		</tr>
+		<tr>
+			<th>Endtime</th>
+			<th>{{ object.end_time }}</th>
+		</tr>
+		<tr>
+			<th>Date of posting</th>
+			<th>{{ object.Post_time }}</th>
+		</tr>
+	</thead>
+</table>
+		
+{% endblock content %}
+        

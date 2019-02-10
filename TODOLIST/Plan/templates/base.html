@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang='uk-ua'>
+<head>
+	{% load bootstrap3 %}
+	<script src="{% bootstrap_jquery_url %}"></script>
+	{% bootstrap_javascript %}
+	{% bootstrap_css %}
+
+	<meta charset="UTF-8"/>
+	<title>TODOLIST-service - {% block meta_title %}{% endblock meta_title %}</title>
+	<meta name="description"
+		  value="Service Of Planning"/>
+	<meta name="viewport" content="width=device-width,initial-scale=1">
+	<!-- Include Styles -->	  
+	<link rel = 'stylesheet'
+		  href="https://cdn.jsdelivr.net/bootstrap/3.3.0/css/bootstrap.min.css">
+	
+	<style type='text/css'>.col-xs-12, .col-xs-4, .col-xs-8{border: 1px solid red;}</style>
+
+	{% block extra_css %}{% endblock extra_css %}
+
+</head>
+<body>
+
+	<!-- Start Container -->
+	<div class="container">
+		<!-- Start Header -->
+		<div class="row" id="header">
+			<!--Logo-->
+			<div class="col-xs-8">
+				<h1>"What's to DO!"</h1>
+			</div>
+			<div class="col-xs-4" id="Main-Selector">
+				<div class="dropdown">
+					<button class="btn dropdown-toggle sr-only" type="button" id="dropdownMenu1" data-toggle="dropdown">
+						Dropdown
+						<span class="caret"></span>
+					</button>
+				<ul class="dropdown-menu-right" role="menu" aria-labelledby="dropdownMenu1">
+					<li role="presentation"><a role="menuitem" tabindex="-1" href="#">Add new lists</a></li>
+					<li role="presentation"><a role="menuitem" tabindex="-1" href="#">Show all my lists</a></li>
+					<li role="presentation" class="devider"></li>
+					<li role="presentation"><a role="menuitem" tabindex="-1" href="#">Log out</a></li>
+				</ul>
+				</div>
+			</div>
+		<!--End Header-->
+
+		<!--Start SubHeader-->
+		<div class='row' id='SubHeader'>
+			<div class="col-xs-12">
+				<ul class="nav nav-tabs" role="tablist">
+					<li role="presentation"
+					{% if '/create' in request.path %} class="active"{% endif %}><a href="{% url "create" %}">Add new list</a></li>
+					<li role="presentation"{% if '/form' in request.path %} class="active"
+					{% endif %}><a href="{% url "form" %}">Show all my lists</a></li>
+					<li role="presentation"><a href="#">Log out</a></li>
+				</ul>
+			</div>
+		</div>
+		<!--End SubHeader-->
+		<!--Start Main Page Content-->
+		<div class="row" id='content-colums'>
+			<div class='col-xs-12' id='content-column'>
+		{% block content %}{% endblock %}
+			</div>
+		</div>
+		<!--End Main Page Content-->
+
+		<!--Start Footer-->
+		<div class="row" id='footer'>
+			<div class="col-xs-12">
+				&copy; 2019 Servise of Doing yout List
+			</div>
+		</div>	
+	
+		<!-- Latest compiled and minified CSS -->
+	
+</html>
