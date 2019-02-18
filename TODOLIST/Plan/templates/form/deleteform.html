@@ -1,0 +1,11 @@
+{% extends 'base.html' %}
+{% block title %} Delete Your Plan {% endblock title %} 
+{% block content %}
+<form action="{% url "form_delete" object.id %}" method="post">
+{% csrf_token %}
+<p>Are you sure that you want to delete "{{ object.title }}"?</p>
+<input type="submit" value="Yes" name="delete_button"
+class="btn btn-danger"/><br /><br />
+</form>
+
+{% endblock content %}

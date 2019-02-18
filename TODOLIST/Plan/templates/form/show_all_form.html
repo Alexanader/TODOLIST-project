@@ -1,15 +1,16 @@
 {% extends 'base.html'%}
+{% block title %}All your's plans here{% endblock title %}
 {% block content %}
-<h2>All your's plans here</h2>
-<table>
+<table class = 'table'>
 	<thead>
+		{% for object in objects %}
 		<tr>
 			<th>Title</th>
-			<th>{{ object.title }}</th>
+			<th><a href='{% url "form_edit" pk=object.id %}'> {{ object.title }}</th>
 		</tr>
 		<tr>
 			<th>Description</th>
-			<th>{{ object.description }}</th>
+				<th>{{ object.description }}</th>
 		</tr>
 		<tr>
 			<th>Starttime</th>
@@ -23,6 +24,22 @@
 			<th>Date of posting</th>
 			<th>{{ object.Post_time }}</th>
 		</tr>
+
+		<tr>
+			<th><div class="btn-group">
+				<button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">Action
+					<span class="caret"></span>
+					</button>
+				<ul class="dropdown-menu" role="menu">
+					<li><a href="{% url 'form_edit' pk=object.id %}">
+						Edit</a></li>
+					<li><a href="{% url 'form_delete' pk=object.id %}">
+						Delete</a></li>
+				</ul>
+				</div>
+			</th>
+		</tr>
+		{% endfor %}
 	</thead>
 </table>
 		

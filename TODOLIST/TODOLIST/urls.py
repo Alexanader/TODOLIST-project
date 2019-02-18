@@ -16,16 +16,19 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 from django.conf.urls import include, url
-from Plan.views import formpage_view, formpage_create_view, homepage_view
-
+from Plan.Views.views import formpage_show_all_view, formpage_create_view, homepage_view, formpage_edit_view, formpage_delete_view
 
 urlpatterns = [
-	path('form/',formpage_view, name='form'),
-	path('home/',homepage_view, name='home'),
-    path('create/',formpage_create_view, name='create'),
+    #Forms for forms
+    url(r'^$',homepage_view, name='home'),
+	url(r'^form/all',formpage_show_all_view, name='form'),
 
+    #Forms for creating, editing and deleting    
+    url(r'^form/create',formpage_create_view, name='create'),
+    url(r'^form/(?P<pk>\d+)/edit/$',formpage_edit_view.as_view(), name='form_edit'),
+    url(r'^form/(?P<pk>\d+)/delete/$',formpage_delete_view.as_view(), name='form_delete'),
 
-
-    path('admin/', admin.site.urls),
+    # Admin site 
+    url('admin/', admin.site.urls),
 ]
  

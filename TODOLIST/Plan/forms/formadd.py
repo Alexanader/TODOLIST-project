@@ -9,9 +9,9 @@ class PlanForm(forms.ModelForm):
 					'size': 20}))
 	description = forms.CharField(label ='',
 				widget = forms.TextInput(attrs={"placeholder": "Plan"}))
-	start_time = forms.CharField(label='',
+	start_time = forms.DateField(label='',
 				widget = forms.TextInput(attrs={"placeholder": datetime.datetime.now().date() }))
-	end_time = forms.CharField(label='',
+	end_time = forms.DateField(label='',
 				widget = forms.TextInput(attrs={"placeholder": datetime.datetime.now().date()}))
 	class Meta:
 		model = Plantodo

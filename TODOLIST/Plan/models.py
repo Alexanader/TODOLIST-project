@@ -3,7 +3,7 @@ from django.db import models
 
 
 class Plantodo(models.Model):
-	"""AIM model"""
+	"""PlanTODO model"""
 	title = models.CharField(max_length = 120,
 							blank = False
 							)

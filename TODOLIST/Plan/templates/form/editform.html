@@ -1,0 +1,14 @@
+{% extends 'base.html'%}
+{% block title %}What you want to edit{% endblock title %}
+{% block content %}
+<table>
+<form action="{% url 'form_edit' object.id%}" method="post" enctype="multipart/form-data">
+{% csrf_token %}
+{{ form.as_p }}
+<input type="submit" value="Save" name="add_button"
+class="btn btn-primary" />
+<button type="submit" name="cancel_button" value="Cancel"
+class="btn btn-link">Cancel</button>
+</form> 
+</table>		
+{% endblock content %}
