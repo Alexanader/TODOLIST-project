@@ -17,6 +17,9 @@ from django.contrib import admin
 from django.urls import path
 from django.conf.urls import include, url
 from Plan.Views.views import formpage_show_all_view, formpage_create_view, homepage_view, formpage_edit_view, formpage_delete_view
+from Plan.Views.registration import sign_up, log_in
+
+
 
 urlpatterns = [
     #Forms for forms
@@ -27,6 +30,12 @@ urlpatterns = [
     url(r'^form/create',formpage_create_view, name='create'),
     url(r'^form/(?P<pk>\d+)/edit/$',formpage_edit_view.as_view(), name='form_edit'),
     url(r'^form/(?P<pk>\d+)/delete/$',formpage_delete_view.as_view(), name='form_delete'),
+
+
+    #Form for Sing up/registration
+    url(r'^signup/$',  sign_up ,name = 'sign_up'),
+    url(r'^login/$',  log_in ,name = 'log_in'),
+
 
     # Admin site 
     url('admin/', admin.site.urls),

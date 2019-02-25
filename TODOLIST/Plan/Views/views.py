@@ -47,21 +47,11 @@ class formpage_delete_view(DeleteView):
 
 	def get_success_url(self):
 		return u'%s?status_message = Your plan is successufully delete' % reverse('home')
-
-		
-# def formpage_edit_view(request,pid,*args,**kwargs):
-# 	obj = Plantodo.objects.get(id = pid)
-# 	context = ({
-# 		'objects': obj
-# 	})
-# 	return render(request,"form/editform.html",context)
-
-# def formpage_delete_view(request,pk):
-# 	return HttpResponse('<h1> Edit Delete %s </h1>' % pk)
-
+	
 
 def homepage_view(request,*args,**kwargs):
 	return render(request,"home.html",{}) 
 
 def formpage_contact_admin_view(request):
 	return render(request,"contact_admin/form.html", {})
+

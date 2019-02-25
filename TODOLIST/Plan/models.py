@@ -1,7 +1,6 @@
 # -*- coding: utf-8 -*- 
 from django.db import models
 
-
 class Plantodo(models.Model):
 	"""PlanTODO model"""
 	title = models.CharField(max_length = 120,
@@ -14,4 +13,8 @@ class Plantodo(models.Model):
 	Post_time = models.DateField(auto_now_add=True, null=True)
 	#build_time = models.TimeField()
 
+
+	def __unicode__(self):
+		return self.title
 # Create your models here.
+	

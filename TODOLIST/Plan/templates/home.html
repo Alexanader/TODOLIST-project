@@ -1,4 +1,11 @@
 {% extends 'base.html'%}
+{% block title %} Home {% endblock title %}
 {% block content %}
-<h1> Home </h1>
+<h3> Descripton <h3>
+<h4> This site is for planing and watching your plans, if you ready to start press button</h4>
+
+<form method="get">
+   <a class="btn btn-primary" href="{% url 'sign_up' %}" role="button">SIGN UP</a>
+   <a class="btn btn-primary" href="{% url 'log_in' %}" role="button">LOG IN</a>
+</form>
 {% endblock content %}
