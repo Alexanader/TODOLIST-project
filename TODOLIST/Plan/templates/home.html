@@ -3,9 +3,12 @@
 {% block content %}
 <h3> Descripton <h3>
 <h4> This site is for planing and watching your plans, if you ready to start press button</h4>
-
 <form method="get">
+{% if not request.user.is_authenticated %}
    <a class="btn btn-primary" href="{% url 'sign_up' %}" role="button">SIGN UP</a>
    <a class="btn btn-primary" href="{% url 'log_in' %}" role="button">LOG IN</a>
+{% else %}
+   <a class="btn btn-primary" href="{% url 'log_out' %}" role="button">LOG OUT</a>
+{% endif %}
 </form>
 {% endblock content %}

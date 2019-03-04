@@ -25,3 +25,4 @@ def log_TODOLIST_deleted_event(sender, **kwargs):
 
 	plan = kwargs['instance']
 	logger.info("Plan deleted: %s (ID: %s)" % (plan.title, plan.id))
+	

@@ -1,6 +1,7 @@
 from django.contrib.auth import login, authenticate, logout
 from django.contrib.auth.forms import UserCreationForm
 from django.shortcuts import render, redirect
+from django.http import HttpResponseRedirect
 
 from ..forms.UserAdd import SignUpForm
 
@@ -19,7 +20,21 @@ def sign_up(request):
     return render(request, 'signup.html', {'form': form})
 
 def log_in(request):
-    return render(request, "Login.html", {})
+    if request.method == 'POST':
+        username = request.POST.get('username')
+        password = request.POST.get('password')
+        if username and password:
+            user = authenticate(username=username, password=password)
+            if user:
+                login(request, user)
+                return redirect('home')
+            else:
+                return render(request, 'Login.html', {'status_message':'Неправильные данные для входа'})
+        else:
+            return render(request, 'Login.html', {'status_message':'Отсутствуют данные для входа'})
+    else:
+        return render(request, "Login.html", {})
 
-def  log_out():
-    pass
+def log_out(request):
+    logout(request)
+    return redirect('home')

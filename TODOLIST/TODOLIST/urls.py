@@ -17,7 +17,7 @@ from django.contrib import admin
 from django.urls import path
 from django.conf.urls import include, url
 from Plan.Views.views import formpage_show_all_view, formpage_create_view, homepage_view, formpage_edit_view, formpage_delete_view
-from Plan.Views.registration import sign_up, log_in
+from Plan.Views.registration import sign_up, log_in, log_out
 
 
 
@@ -33,8 +33,9 @@ urlpatterns = [
 
 
     #Form for Sing up/registration
-    url(r'^signup/$',  sign_up ,name = 'sign_up'),
-    url(r'^login/$',  log_in ,name = 'log_in'),
+    url(r'^signup/$', sign_up, name='sign_up'),
+    url(r'^login/$', log_in, name='log_in'),
+    url(r'^logout/$', log_out, name='log_out'),
 
 
     # Admin site 

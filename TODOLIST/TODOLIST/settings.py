@@ -167,4 +167,6 @@ STATIC_URL = '/static/'
 
 MEDIA_URL = '/media/'
 
-LOGIN_URL = '/Plan/user_login/'
+LOGIN_URL = '/login'
+
+EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'

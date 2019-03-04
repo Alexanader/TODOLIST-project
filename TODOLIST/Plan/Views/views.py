@@ -1,6 +1,6 @@
-from django.shortcuts import render
-from django.http import HttpResponse
-
+from django.shortcuts import render, redirect
+from django.http import HttpResponse, HttpResponseForbidden
+from django.contrib.auth.decorators import login_required
 from django.views.generic import UpdateView, DeleteView
 from django.urls import reverse
 from django.forms import ModelForm
@@ -11,20 +11,28 @@ from ..forms.formadd import PlanForm
 
 # Create your views here.
 
+@login_required
 def formpage_create_view(request):
-	form_add = PlanForm(request.POST or None)
-	if form_add.is_valid():
-		form_add.save()
-	context = {
-		'form': form_add
-	}
-	return render(request,"form/addform.html",context)
+	if request.method == 'POST':
+		form_add = PlanForm(request.POST or None)
+		if form_add.is_valid():
+			fields = form_add.cleaned_data
+			fields['user'] = request.user
+			plan = Plantodo(**fields)
+			plan.save()
+		return redirect('form')
+	else:
+		return render(request, "form/addform.html", {'form':PlanForm()})
 
+@login_required
 def formpage_show_all_view(request, *args, **kwargs):
-	obj = Plantodo.objects.all()
+	#if request.user.is_authenticated:
+	obj = Plantodo.objects.filter(user=request.user).order_by('end_time')
 	context =({ 
 		'objects': obj
 	})
+	#else:
+	#	return HttpResponseForbidden()
 	return render(request,"form/show_all_form.html", context) 
 
 class formpage_edit_view(UpdateView):
